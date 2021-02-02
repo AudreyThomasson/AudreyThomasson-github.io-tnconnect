@@ -1,5 +1,6 @@
 import React from 'react';
 import { createMuiTheme, ThemeProvider, Button } from '@material-ui/core';
+import BackToTopBar from './components/TopBar';
 
 
 const theme = createMuiTheme({
@@ -16,12 +17,7 @@ const theme = createMuiTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
-      <Button variant="contained" color="secondary">
-        SEcondary
-      </Button>
+      <BackToTopBar/>
     </ThemeProvider>
   );
 }
