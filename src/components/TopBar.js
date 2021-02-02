@@ -14,13 +14,24 @@ import Container from '@material-ui/core/Container';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
+import { CenterFocusStrong } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
+    root: {
+        position: 'fixed',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+    },
+
+    title: {
+        flexGrow: 1,
+        paddingTop: 6,
+        paddingLeft: 5,
+    },
+
+    logo: {
+        height: '45px',
+    },
 }));
 
 function ScrollTop(props) {
@@ -51,22 +62,26 @@ function ScrollTop(props) {
 
 
 export default function BackToTopBar(props) {
+    const classes = useStyles();
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar>
+      <AppBar style={{backgroundColor: "white"}}>
         <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="open drawer">
+            <IconButton edge="start" color="secondary" aria-label="open drawer">
                 <MenuIcon />
             </IconButton>
-          <Typography variant="h6">Scroll to see button</Typography>
+
+            <Typography variant="h6" className={classes.title} >
+                <img src="/images/TNConnect-FULL-Logo.svg" className={classes.logo}/>
+            </Typography>
             
-            <IconButton edge="end" color="inherit">
+            <IconButton color="secondary">
                 <SearchIcon />
             </IconButton>
 
         </Toolbar>
-        
+
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
       <Container>
