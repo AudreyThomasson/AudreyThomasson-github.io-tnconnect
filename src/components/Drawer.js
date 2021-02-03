@@ -29,52 +29,60 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        position: 'fixed',
+        // position: 'fixed',
         bottom: theme.spacing(2),
         right: theme.spacing(2),
     },
 
+    
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
+        
+        [theme.breakpoints.up('sm')]: {
+            width: `calc(100% - ${drawerWidth}px)`,
+            marginLeft: drawerWidth,
+        },
+    },
+    
+    filterButton: {
+        marginRight: theme.spacing(2),
+        [theme.breakpoints.up('sm')]: {
+            display: 'none',
+        },
+    },
+    
+    bar: {
+        borderBottom: 10,
+        borderBlockColor: '#1976D2',
+    },
+    
+    title: {
+        flexGrow: 1,
+        paddingTop: 6,
+        paddingLeft: 5,
+    },
+    
+    logo: {
+        height: '45px',
+    },
+    
+    // necessary for content to be below app bar
+    toolbar: theme.mixins.toolbar,
+    drawerPaper: {
+        width: drawerWidth,
+    },
+    
     drawer: {
         [theme.breakpoints.up('sm')]: {
         width: drawerWidth,
         flexShrink: 0,
         },
     },
-  
-    appBar: {
-        [theme.breakpoints.up('sm')]: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        },
-    },
- 
-    menuButton: {
-        marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
-        display: 'none',
-        },
-     },
 
-    bar: {
-        borderBottom: 10,
-        borderBlockColor: '#1976D2',
-    },
 
-    title: {
-        flexGrow: 1,
-        paddingTop: 6,
-        paddingLeft: 5,
-    },
-
-    logo: {
-        height: '45px',
-    },
-
-    // necessary for content to be below app bar
-    toolbar: theme.mixins.toolbar,
-    drawerPaper: {
-        width: drawerWidth,
-    },
+    drawerContainer: {
+        overflow: 'auto',
+      },
 
     content: {
         flexGrow: 1,
@@ -109,7 +117,7 @@ function ScrollTop(props) {
     );
 }
 
-export const ResponsiveDrawer = (props) => {
+export const ResponsiveClippedDrawer = (props) => {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -120,60 +128,59 @@ export const ResponsiveDrawer = (props) => {
   };
 
   const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-      <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
+      <>
+        <Toolbar />
+        <div className={classes.drawerContainer}>
+        <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+            </ListItem>
+            ))}
+        </List>
+        <Divider />
+        <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+            </ListItem>
+            ))}
+        </List>
+        </div>
+    </>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root}>
-        <React.Fragment>
             <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar} style={{backgroundColor: "white"}} borderBottom={5} borderColor="primary.main">
+            <AppBar position="fixed" className={classes.appBar} style={{backgroundColor: "white"}}>
                 <Toolbar>
-                <IconButton
-                    color="secondary"
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={handleDrawerToggle}
-                    className={classes.menuButton}
-                >
-                    <TuneIcon />
-                </IconButton>
+                    <IconButton
+                        color="secondary"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        className={classes.filterButton}
+                    >
+                        <TuneIcon />
+                    </IconButton>
 
-                <Typography variant="h6" className={classes.title} >
-                <img src="/images/TNConnect-FULL-Logo.svg" className={classes.logo} alt='Logo with hour outlines of people in circle forming a plus sign'/>
-                </Typography>
+                    <Typography variant="h6" className={classes.title} >
+                    <img src="/images/TNConnect-FULL-Logo.svg" className={classes.logo} alt='Logo with hour outlines of people in circle forming a plus sign'/>
+                    </Typography>
 
-                <IconButton color="secondary">
-                    <SearchIcon />
-                </IconButton>
-
+                    <IconButton color="secondary">
+                        <SearchIcon />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
             <Toolbar id="back-to-top-anchor" />
 
-      <nav className={classes.drawer} aria-label="mailbox folders">
+
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
@@ -182,6 +189,7 @@ export const ResponsiveDrawer = (props) => {
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
             onClose={handleDrawerToggle}
+            className={classes.drawer}
             classes={{
               paper: classes.drawerPaper,
             }}
@@ -194,6 +202,7 @@ export const ResponsiveDrawer = (props) => {
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer
+            className={classes.drawer}
             classes={{
               paper: classes.drawerPaper,
             }}
@@ -203,42 +212,41 @@ export const ResponsiveDrawer = (props) => {
             {drawer}
           </Drawer>
         </Hidden>
-      </nav>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Container>
-            <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-            facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-            gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-            donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-            adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-            Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-            imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-            arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-            donec massa sapien faucibus et molestie ac.
-            </Typography>
-            <Typography paragraph>
-            Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-            facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-            tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-            consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-            vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-            hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-            tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-            nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-            accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-            </Typography>
-        </Container>
-      </main>
+     
 
-        <ScrollTop {...props}>
-            <Fab color="secondary" size="small" aria-label="scroll back to top">
-            <KeyboardArrowUpIcon />
-            </Fab>
-        </ScrollTop>
-        </React.Fragment>
-    </div>
-  );
+            <main className={classes.content}>
+                <Toolbar />
+
+                    <Typography paragraph>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                    ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
+                    facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
+                    gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
+                    donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+                    Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
+                    imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
+                    arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+                    donec massa sapien faucibus et molestie ac.
+                    </Typography>
+                    <Typography paragraph>
+                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
+                    facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
+                    tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
+                    consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
+                    vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
+                    hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
+                    tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
+                    nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
+                    accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
+                    </Typography>
+            </main>
+
+            <ScrollTop {...props}>
+                <Fab color="secondary" size="small" aria-label="scroll back to top">
+                <KeyboardArrowUpIcon />
+                </Fab>
+            </ScrollTop>
+        </div>
+    );
 }
