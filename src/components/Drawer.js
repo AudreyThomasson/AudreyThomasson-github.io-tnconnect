@@ -1,20 +1,11 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Fab from '@material-ui/core/Fab';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -22,6 +13,7 @@ import TuneIcon from '@material-ui/icons/Tune';
 import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Zoom from '@material-ui/core/Zoom';
+import DrawerCategories from './DrawerCategories';
 
 
 const drawerWidth = 240;
@@ -127,30 +119,6 @@ export const ResponsiveClippedDrawer = (props) => {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-      <>
-        <Toolbar />
-        <div className={classes.drawerContainer}>
-        <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-            </ListItem>
-            ))}
-        </List>
-        <Divider />
-        <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-            </ListItem>
-            ))}
-        </List>
-        </div>
-    </>
-  );
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -197,9 +165,15 @@ export const ResponsiveClippedDrawer = (props) => {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            {drawer}
+            {/* DrawerCategories calls the function that renders all the
+              categories on the drawer */}
+            <DrawerCategories />
+          
           </Drawer>
         </Hidden>
+        
+        {/* The permanent drawer is hidden on xs screens and replaced
+        by the sliding out drawer from above */}
         <Hidden xsDown implementation="css">
           <Drawer
             className={classes.drawer}
@@ -209,7 +183,10 @@ export const ResponsiveClippedDrawer = (props) => {
             variant="permanent"
             open
           >
-            {drawer}
+              {/* DrawerCategories calls the function that renders all the
+              categories on the drawer */}
+              <DrawerCategories />
+          
           </Drawer>
         </Hidden>
      
