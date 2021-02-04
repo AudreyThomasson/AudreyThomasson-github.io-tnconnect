@@ -14,8 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Zoom from '@material-ui/core/Zoom';
 import DrawerCategories from './DrawerCategories';
-
-
+import getCategories from './NestedDrawerCategories';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
+        
         
         [theme.breakpoints.up('sm')]: {
             width: `calc(100% - ${drawerWidth}px)`,
@@ -167,7 +167,8 @@ export const ResponsiveClippedDrawer = (props) => {
           >
             {/* DrawerCategories calls the function that renders all the
               categories on the drawer */}
-            <DrawerCategories />
+            {/* <DrawerCategories /> */}
+            <NestedMenu01 menus={getCategories()} selectedKeys={['button']} />
           
           </Drawer>
         </Hidden>
@@ -185,7 +186,8 @@ export const ResponsiveClippedDrawer = (props) => {
           >
               {/* DrawerCategories calls the function that renders all the
               categories on the drawer */}
-              <DrawerCategories />
+              {/* <DrawerCategories /> */}
+              <NestedMenu01 menus={getCategories()} selectedKeys={['button']} />
           
           </Drawer>
         </Hidden>

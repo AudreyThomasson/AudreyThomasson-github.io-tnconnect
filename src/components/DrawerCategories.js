@@ -8,12 +8,17 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
+
+    mainListText: {
+        color: "primary",
+    },
   
-  nested: {
-    paddingLeft: theme.spacing(4),
-  },
+    nested: {
+        paddingLeft: theme.spacing(4),
+    },
 }));
 
 export default function DrawerCategories() {
@@ -39,8 +44,8 @@ export default function DrawerCategories() {
             className={classes.root}
             >
 
-                <ListItem button onClick={handleClick}>
-                    <ListItemText primary="Children's Services" />
+                <ListItem button  onClick={handleClick}>
+                    <ListItemText classes={{ primary: classes.mainListText }} primary="Children's Services" />
                     {open ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
                 <Collapse in={open} timeout="auto" unmountOnExit>
