@@ -5,7 +5,6 @@ const getCategories = () => [
     {
     key: 'children',
     label: "Children's Services",
-    // separated: true,
     subMenus: [
         { key: 'childcare', label: 'Childcare' },
         { key: 'children-sub', label: "Children's Services" },

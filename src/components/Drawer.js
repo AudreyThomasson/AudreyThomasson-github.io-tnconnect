@@ -13,7 +13,8 @@ import TuneIcon from '@material-ui/icons/Tune';
 import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Zoom from '@material-ui/core/Zoom';
-// import DrawerCategories from './DrawerCategories';
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import getCategories from './NestedDrawerCategories';
 import NestedMenu01 from './NestedMenu01';
 
@@ -168,33 +169,50 @@ export const ResponsiveClippedDrawer = (props) => {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            {/* DrawerCategories calls the function that renders all the
-              categories on the drawer */}
-            {/* <DrawerCategories /> */}
+            {/* NestedMenu01 is the function that renders all the
+              categories listed in getCategories on the drawer */}
             <Toolbar />
-            <NestedMenu01 menus={getCategories()} selectedKeys={['button']} />
-          
+            <div className={classes.drawerContainer}/>
+            <List
+                component="nav"
+                aria-labelledby="category-subheader"
+                subheader={
+                    <ListSubheader component="div" id="category-subheader">
+                    Click a category to view:
+                    </ListSubheader>
+                }>
+
+                <NestedMenu01 menus={getCategories()} selectedKeys={['button']} />
+            </List>
           </Drawer>
         </Hidden>
         
         {/* The permanent drawer is hidden on xs screens and replaced
         by the sliding out drawer from above */}
         <Hidden xsDown implementation="css">
-          <Drawer
-            className={classes.drawer}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-              {/* DrawerCategories calls the function that renders all the
-              categories on the drawer */}
-              {/* <DrawerCategories /> */}
-              <Toolbar />
-              <NestedMenu01 menus={getCategories()} selectedKeys={['button']} />
-          
-          </Drawer>
+            <Drawer
+                className={classes.drawer}
+                classes={{
+                paper: classes.drawerPaper,
+                }}
+                variant="permanent"
+                open
+            >
+               {/* NestedMenu01 is the function that renders all the
+              categories listed in getCategories on the drawer */}
+                <Toolbar />
+                <div className={classes.drawerContainer}/>
+                <List
+                    component="nav"
+                    aria-labelledby="category-subheader"
+                    subheader={
+                        <ListSubheader component="div" id="category-subheader">
+                        Click a category to view:
+                        </ListSubheader>
+                    }>
+                    <NestedMenu01 menus={getCategories()} selectedKeys={['button']} />
+                </List>
+            </Drawer>
         </Hidden>
      
 
