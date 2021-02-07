@@ -1,7 +1,6 @@
 import React from 'react';
 import { createMuiTheme, ThemeProvider, Button } from '@material-ui/core';
-import BackToTopBar from './components/TopBar';
-import { ResponsiveClippedDrawer } from './components/Drawer';
+import { ApplicationViews } from './components/ApplicationViews';
 
 
 const theme = createMuiTheme({
@@ -18,8 +17,7 @@ const theme = createMuiTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      {/* <BackToTopBar/> */}
-      <ResponsiveClippedDrawer />
+      <ApplicationViews />
     </ThemeProvider>
   );
 }
