@@ -2,9 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Divider } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+import Link from '@material-ui/core/Link';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
@@ -43,7 +42,7 @@ const OneCard = ({ help }) => {
         <Typography variant="body2" >{`${help.address}`}</Typography>
 
         <Typography variant="body2" className='subhead' gutterBottom>PHONE:</Typography>
-        <Typography variant="body2" ><Link href={`tel:${help.phone}`} onClick={preventDefault}>{`${help.phone}`}</Link></Typography>
+        <Typography variant="body2" ><Link href={`tel:${help.phone}`} >{`${help.phone}`}</Link></Typography>
 
         <Typography variant="body2" className='subhead'>NOTES:</Typography>
         <Typography variant="body2" >{`${help.notes}`}</Typography>

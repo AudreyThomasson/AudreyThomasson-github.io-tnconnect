@@ -220,7 +220,7 @@ export const ResponsiveClippedDrawer = (props) => {
             <main className={classes.content}>
                 <Toolbar />
 
-                    <OneCard />
+                    {/* <OneCard /> */}
                     <Typography paragraph>
                     Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
                     facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
