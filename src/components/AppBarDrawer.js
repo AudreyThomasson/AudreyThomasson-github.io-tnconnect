@@ -119,12 +119,6 @@ export const ResponsiveClippedDrawer = (props) => {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -137,7 +131,7 @@ export const ResponsiveClippedDrawer = (props) => {
                         color="secondary"
                         aria-label="open drawer"
                         edge="start"
-                        onClick={handleDrawerToggle}
+                        onClick={props.handleDrawerToggle}
                         className={classes.filterButton}
                     >
                         <TuneIcon />
@@ -160,8 +154,8 @@ export const ResponsiveClippedDrawer = (props) => {
             container={container}
             variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
+            open={props.mobileOpen}
+            onClose={props.handleDrawerToggle}
             className={classes.drawer}
             classes={{
               paper: classes.drawerPaper,

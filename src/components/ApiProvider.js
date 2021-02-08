@@ -1,11 +1,8 @@
-// fetches from the API 
-// slices the array 
 import React, { useState, createContext } from "react"
-
-import {keys} from "../Settings.js";
+import { keys } from "../Settings.js";
 
 let help = [];
-const weatherKey = keys.weatherKey;
+const key = keys.AppToken;
 
 
 /*
@@ -22,7 +19,7 @@ export const HelpProvider = (props) => {
     const [ searchTerms, setSearchTerms ] = useState("")
 
     const getHelp = () => {
-    return fetch(`https://api.openweathermap.org/data/2.5/forecast?&units=imperial&zip=${zipCode}&appid=${weatherKey}`)
+    return fetch(`https://data.nashville.gov/resource/ekvg-j2ns.json?$$app_token=${key}`)
     .then(response => response.json())
     .then(setHelp)
     }

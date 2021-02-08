@@ -1,6 +1,6 @@
 import React from "react";
 // import classNames from "classnames";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
@@ -70,11 +70,6 @@ const useStyles = makeStyles((theme) => ({
 export const LandingPage = (props) => {
   const classes = useStyles();
   const { ...rest } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
 
   return (
     <main className={classes.content}>
@@ -82,7 +77,7 @@ export const LandingPage = (props) => {
       <div   className={classes.humaaans} alt='colorful illustration of group of people'/>
       {/* <Parallax filter image={require("../images/TNConnect-HumaaansGroup.png")} /> */}
   
-      <div className={classes.main, classes.mainRaised}>
+      <div className={classes.mainRaised}>
         <div className={classes.container, classes.section}>
         
             <Grid justify="center">
@@ -94,9 +89,10 @@ export const LandingPage = (props) => {
                 </h4>
                 <Button
                   variant="contained"
+                  open={props.mobileOpen}
                   color="primary"
                   aria-label="open drawer"
-                  onClick={handleDrawerToggle}
+                  onClick={props.handleDrawerToggle}
                   disableElevation
                 >
                 Search by Category
