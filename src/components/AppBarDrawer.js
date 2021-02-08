@@ -18,7 +18,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import getCategories from './NestedDrawerCategories';
 import NestedMenu01 from './NestedMenu01';
 import OneCard from './Card';
-import LandingPage from './LandingPage';
+import { LandingPage } from './LandingPage';
 
 
 const drawerWidth = 240;
