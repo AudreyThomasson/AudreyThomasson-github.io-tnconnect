@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   //   zIndex: "3"
   // },
   mainRaised: {
-    margin: "-60px 30px 0px",
+    margin: "20px 30px 0px",
     borderRadius: "6px",
     boxShadow:
       "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)"
@@ -62,7 +62,11 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: '#E51111'
   
-  } 
+  },
+  description: { 
+    color: "#5e5e5e",
+    font: "Open Sans",
+  },
 }));
 
 
