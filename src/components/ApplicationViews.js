@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route } from "react-router-dom"
 import { ResponsiveClippedDrawer } from './AppBarDrawer'
+import  { LandingPage } from './LandingPage'
 
 export const ApplicationViews = () => {
     return (
@@ -8,6 +9,7 @@ export const ApplicationViews = () => {
             {/* Home / Main Screen*/}
             <Route exact path="/">
                 <ResponsiveClippedDrawer />
+                <LandingPage />
                 
             </Route>
 
