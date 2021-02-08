@@ -1,6 +1,6 @@
 import React from "react";
 // import classNames from "classnames";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   //   zIndex: "3"
   // },
   mainRaised: {
-    margin: "-60px 30px 0px",
+    margin: "20px 30px 0px",
     borderRadius: "6px",
     boxShadow:
       "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)"
@@ -62,7 +62,11 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: '#E51111'
   
-  } 
+  },
+  description: { 
+    color: "#5e5e5e",
+    font: "Open Sans",
+  },
 }));
 
 
@@ -70,11 +74,6 @@ const useStyles = makeStyles((theme) => ({
 export const LandingPage = (props) => {
   const classes = useStyles();
   const { ...rest } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
 
   return (
     <main className={classes.content}>
@@ -82,7 +81,7 @@ export const LandingPage = (props) => {
       <div   className={classes.humaaans} alt='colorful illustration of group of people'/>
       {/* <Parallax filter image={require("../images/TNConnect-HumaaansGroup.png")} /> */}
   
-      <div className={classes.main, classes.mainRaised}>
+      <div className={classes.mainRaised}>
         <div className={classes.container, classes.section}>
         
             <Grid justify="center">
@@ -94,9 +93,10 @@ export const LandingPage = (props) => {
                 </h4>
                 <Button
                   variant="contained"
+                  open={props.mobileOpen}
                   color="primary"
                   aria-label="open drawer"
-                  onClick={handleDrawerToggle}
+                  onClick={props.handleDrawerToggle}
                   disableElevation
                 >
                 Search by Category

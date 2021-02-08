@@ -1,5 +1,4 @@
-import React from 'react';
-
+// All the categories that will be added to the drawer
 
 const getCategories = () => [
     {
