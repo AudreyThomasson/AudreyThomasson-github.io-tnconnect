@@ -18,6 +18,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import getCategories from './NestedDrawerCategories';
 import NestedMenu01 from './NestedMenu01';
 import OneCard from './Card';
+import { LandingPage } from './LandingPage';
 
 
 const drawerWidth = 240;
@@ -88,31 +89,31 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function ScrollTop(props) {
-    const { children } = props;
-    const classes = useStyles();
+// function ScrollTop(props) {
+//     const { children } = props;
+//     const classes = useStyles();
   
-    const trigger = useScrollTrigger({
-      disableHysteresis: true,
-      threshold: 100,
-    });
+//     const trigger = useScrollTrigger({
+//       disableHysteresis: true,
+//       threshold: 100,
+//     });
   
-    const handleClick = (event) => {
-      const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+//     const handleClick = (event) => {
+//       const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
   
-      if (anchor) {
-        anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    };
+//       if (anchor) {
+//         anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+//       }
+//     };
   
-    return (
-      <Zoom in={trigger}>
-        <div onClick={handleClick} role="presentation" className={classes.root}>
-          {children}
-        </div>
-      </Zoom>
-    );
-}
+//     return (
+//       <Zoom in={trigger}>
+//         <div onClick={handleClick} role="presentation" className={classes.root}>
+//           {children}
+//         </div>
+//       </Zoom>
+//     );
+// }
 
 export const ResponsiveClippedDrawer = (props) => {
   const { window } = props;
@@ -217,11 +218,12 @@ export const ResponsiveClippedDrawer = (props) => {
         </Hidden>
      
 
-            <main className={classes.content}>
-                <Toolbar />
+            {/* <main className={classes.content}>
+                <Toolbar /> */}
 
                     {/* <OneCard /> */}
-                    <Typography paragraph>
+                    {/* <LandingPage /> */}
+                    {/* <Typography paragraph>
                     Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
                     facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
                     tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
@@ -231,14 +233,14 @@ export const ResponsiveClippedDrawer = (props) => {
                     tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
                     nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
                     accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-                    </Typography>
-            </main>
+                    </Typography> */}
+            {/* </main> */}
 
-            <ScrollTop {...props}>
+            {/* <ScrollTop {...props}>
                 <Fab color="secondary" size="small" aria-label="scroll back to top">
                 <KeyboardArrowUpIcon />
                 </Fab>
-            </ScrollTop>
+            </ScrollTop> */}
         </div>
     );
 }
