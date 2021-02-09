@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useParams } from 'react-router-dom'
 // import { HelpContext } from "./HelpProvider"
-import { OneCard } from "./Card"
+import OneCard from "./Card"
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from '@material-ui/styles';
+import { HelpProvider, HelpContext } from './ApiProvider'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const CardList = (key) => {
+export const CardList = () => {
     const classes = useStyles();
     const { key } = useParams();
-    // const { Fire, Police, Wifi, Library, searchTerms } = useContext(HelpContext)
+    const { fire, police, wifi, library, searchTerms } = useContext(HelpContext)
 
     // Sets the array that will be passed to the Cards and rendered based on what is chosen in the 
     // drawer menus or the search bar
@@ -41,17 +43,17 @@ export const CardList = (key) => {
             const subset = allHelp.filter(place => place.notes.toLowerCase().includes(searchTerms.toLowerCase()))
             setFiltered(subset)
         
-        } else if (key === fire) {
+        } else if (key === "fire") {
             // If the search field is blank and selected category is Fire, setFiltered to Fire
             setFiltered(fire)
         
-        } else if (key === police) {
+        } else if (key === "police") {
             setFiltered(police)
         
-        } else if (key === library) {
+        } else if (key === "library") {
             setFiltered(library)
        
-        } else if (key === wifi) {
+        } else if (key === "wifi") {
             setFiltered(wifi)
         }
         

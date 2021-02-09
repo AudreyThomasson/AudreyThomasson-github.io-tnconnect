@@ -177,7 +177,7 @@ export const ResponsiveClippedDrawer = (props) => {
                     </ListSubheader>
                 }>
 
-                <NestedMenu01 menus={getCategories()} selectedKeys={['button']} />
+                <NestedMenu01 menus={getCategories()} selectedKeys={['button']} mobileOpen={props.mobileOpen} handleDrawerToggle={props.handleDrawerToggle}/>
             </List>
           </Drawer>
         </Hidden>

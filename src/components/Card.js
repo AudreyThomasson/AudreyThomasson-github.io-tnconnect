@@ -32,9 +32,7 @@ const useStyles = makeStyles({
 
 const OneCard = ({ help }) => {
   const classes = useStyles();
-  if (key = fire) {
-    
-  }
+
 
   return (
     <Card className={classes.root}>

@@ -1,11 +1,11 @@
 import React, { useState, createContext } from "react"
 import { keys } from "../Settings.js";
 
-let CommRes = [];
-let Fire = [];
-let Library = [];
-let Police = [];
-let Wifi = [];
+let commRes = [];
+let fire = [];
+let library = [];
+let police = [];
+let wifi = [];
 
 const key = keys.AppToken;
 
@@ -37,31 +37,46 @@ export const HelpProvider = (props) => {
     const getFire = () => {
         return fetch(`https://data.nashville.gov/resource/frq9-a5iv.json?$$app_token=${key}`)
         .then(response => response.json())
-        .then(setFire)
-        const setFire = fire.map(x => ({
-            'name': x.station_number,
-          }));
+        .then(parsedResponse => {
+            const newFire = parsedResponse.map(x => {
+                x['name']= x.station_number
+            });
+            setFire(newFire)
+        })  
     }
 
     const getLibrary = () => {
         return fetch(`https://data.nashville.gov/resource/vn5u-d69i.json?$$app_token=${key}`)
         .then(response => response.json())
-        .then(setLibrary)
+        .then(parsedResponse => {
+            const newLibrary = parsedResponse.map(x => {
+                x['name']= x.library_name
+                x['address']= x.location
+            });
+            setLibrary(newLibrary)
+        })
     }
 
     const getPolice = () => {
         return fetch(`https://data.nashville.gov/resource/y5ik-ut5s.json?$$app_token=${key}`)
         .then(response => response.json())
-        .then(setPolice)
-        const setPolice = police.map(x => ({
-            'name': x.precinct_name,
-          }));
+        .then(parsedResponse => {
+            const newPolice = parsedResponse.map(x => {
+                x['name']= x.precinct_name
+            });
+            setPolice(newPolice)
+        })
     }
 
     const getWifi = () => {
         return fetch(`https://data.nashville.gov/resource/4ugp-s85t.json?$$app_token=${key}`)
         .then(response => response.json())
-        .then(setWifi)
+        .then(parsedResponse => {
+            const newWifi = parsedResponse.map(x => {
+                x['name']= x.site_name
+            });
+            setWifi(newWifi)
+        })
     }
 
 
@@ -74,7 +89,7 @@ export const HelpProvider = (props) => {
     */
     return (
         <HelpContext.Provider value={{
-            fire, getFire, library, getLibrary, police, getPolice, wifi, getWifi, searchTerms, setSearchTerms
+            getCommRes, fire, getFire, library, getLibrary, police, getPolice, wifi, getWifi, searchTerms, setSearchTerms
         }}>
             {props.children}
         </HelpContext.Provider>

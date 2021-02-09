@@ -99,7 +99,7 @@ Header.defaultProps = {
     onMenuClick: () => {},
 };
   
-const NestedMenu01 = ({ menus, selectedKey, openKeys }) => {
+const NestedMenu01 = ({ menus, selectedKey, openKeys, mobileOpen, handleDrawerToggle }) => {
     const classes = useStyles();
     const history = useHistory();
     const [currentKey, setCurrentKey] = useState(selectedKey || '');
@@ -140,9 +140,10 @@ const NestedMenu01 = ({ menus, selectedKey, openKeys }) => {
 // **********************Trigger for Card?***********************
             onMenuClick={() => {
                 if (!subMenus || separated) {
-                    setCurrentKey(key),
-                    history.push(`/resources/${currentKey}`)
-                    {handleDrawerToggle}
+                    setCurrentKey(key)
+                    history.push(`/resources/${key}`)
+                    mobileOpen={mobileOpen} 
+                    handleDrawerToggle={handleDrawerToggle}
                 }
                 if (subMenus && !currentOpenKeys.includes(key)) {
                 handleToggle(key)();
