@@ -20,11 +20,11 @@ export const HelpContext = createContext()
  */
 
 export const HelpProvider = (props) => {
-    const [CommRes, setCommRes] = useState([])
-    const [Fire, setFire] = useState([])
-    const [Library, setLibrary] = useState([])
-    const [Police, setPolice] = useState([])
-    const [Wifi, setWifi] = useState([])
+    const [commRes, setCommRes] = useState([])
+    const [fire, setFire] = useState([])
+    const [library, setLibrary] = useState([])
+    const [police, setPolice] = useState([])
+    const [wifi, setWifi] = useState([])
 
     const [ searchTerms, setSearchTerms ] = useState("")
 
@@ -38,6 +38,9 @@ export const HelpProvider = (props) => {
         return fetch(`https://data.nashville.gov/resource/frq9-a5iv.json?$$app_token=${key}`)
         .then(response => response.json())
         .then(setFire)
+        const setFire = fire.map(x => ({
+            'name': x.station_number,
+          }));
     }
 
     const getLibrary = () => {
@@ -50,6 +53,9 @@ export const HelpProvider = (props) => {
         return fetch(`https://data.nashville.gov/resource/y5ik-ut5s.json?$$app_token=${key}`)
         .then(response => response.json())
         .then(setPolice)
+        const setPolice = police.map(x => ({
+            'name': x.precinct_name,
+          }));
     }
 
     const getWifi = () => {
@@ -68,7 +74,7 @@ export const HelpProvider = (props) => {
     */
     return (
         <HelpContext.Provider value={{
-            Fire, getFire, Library, getLibrary, Police, getPolice, Wifi, getWifi, searchTerms, setSearchTerms
+            fire, getFire, library, getLibrary, police, getPolice, wifi, getWifi, searchTerms, setSearchTerms
         }}>
             {props.children}
         </HelpContext.Provider>

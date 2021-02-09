@@ -32,6 +32,9 @@ const useStyles = makeStyles({
 
 const OneCard = ({ help }) => {
   const classes = useStyles();
+  if (key = fire) {
+    
+  }
 
   return (
     <Card className={classes.root}>
@@ -43,10 +46,12 @@ const OneCard = ({ help }) => {
         <Divider variant='fullWidth' className='line'/>
         
         <Typography variant="body" className='subhead' gutterBottom>ADDRESS:</Typography>    
-        <Typography variant="body2" >{`${help.address}`}</Typography>
+        <Typography variant="body2" >{`${help.street_address}`}</Typography>
+        <Typography variant="body2" >{`${help.city}`}</Typography><Typography variant="body2" >{`${help.state}`}</Typography>
+        <Typography variant="body2" >{`${help.zip_code}`}</Typography>
 
         <Typography variant="body2" className='subhead' gutterBottom>PHONE:</Typography>
-        <Typography variant="body2" ><Link href={`tel:${help.phone}`} >{`${help.phone}`}</Link></Typography>
+        <Typography variant="body2" ><Link href={`tel:${help.phone_number}`} >{`${help.phone_number}`}</Link></Typography>
 
         <Typography variant="body2" className='subhead'>NOTES:</Typography>
         <Typography variant="body2" >{`${help.notes}`}</Typography>

@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from "react"
+import { useParams } from 'react-router-dom'
 // import { HelpContext } from "./HelpProvider"
 import { OneCard } from "./Card"
+import Grid from "@material-ui/core/Grid";
+
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -13,9 +16,11 @@ const useStyles = makeStyles((theme) => ({
 
 export const CardList = (key) => {
     const classes = useStyles();
+    const { key } = useParams();
     // const { Fire, Police, Wifi, Library, searchTerms } = useContext(HelpContext)
 
-    // Since you are no longer ALWAYS displaying all of the help
+    // Sets the array that will be passed to the Cards and rendered based on what is chosen in the 
+    // drawer menus or the search bar
     const [ filteredHelp, setFiltered ] = useState([])
 
     // Empty dependency array - useEffect only runs after first render
@@ -28,7 +33,7 @@ export const CardList = (key) => {
 
 
     // useEffect dependency array with dependencies - will run if dependency changes (state)
-    // Filters for searchTerms and that the help belong to the activeUser
+    // Filters for searchTerms or a selection on the drawer menus
     // searchTerms will cause a change
     useEffect(() => {
         if (searchTerms !== "") {
@@ -36,21 +41,21 @@ export const CardList = (key) => {
             const subset = allHelp.filter(place => place.notes.toLowerCase().includes(searchTerms.toLowerCase()))
             setFiltered(subset)
         
-        } else if (key === Fire) {
+        } else if (key === fire) {
             // If the search field is blank and selected category is Fire, setFiltered to Fire
-            setFiltered(Fire)
+            setFiltered(fire)
         
-        } else if (key === Police) {
-            setFiltered(Police)
+        } else if (key === police) {
+            setFiltered(police)
         
-        } else if (key === Library) {
-            setFiltered(Library)
+        } else if (key === library) {
+            setFiltered(library)
        
-        } else if (key === Wifi) {
-            setFiltered(Wifi)
+        } else if (key === wifi) {
+            setFiltered(wifi)
         }
         
-    }, [searchTerms, help])
+    }, [searchTerms, key])
 
  
 
@@ -58,18 +63,18 @@ export const CardList = (key) => {
     return (
         <>
 
-                        
-            <h1 className='classes.title'>Community Resources</h1>
-            <br/>
-            <Card.Group itemsPerRow={4} stackable className='cardHolder'>
-            <>
-                {
-                filteredHelp.map(help => {
-                    return <OneCard key={help.id} help={help} />
-                })
-                }
-            </>
-            </Card.Group>
+            <Grid justify="center" >           
+                <h1 className='classes.title'>Community Resources</h1>
+                <br/>
+                
+                <>
+                    {
+                    filteredHelp.map(help => {
+                        return <OneCard key={help.id} help={help} />
+                    })
+                    }
+                </>
+            </Grid>
 
 
         </>

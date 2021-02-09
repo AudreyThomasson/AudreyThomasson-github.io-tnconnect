@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom"
 import cx from 'clsx';
 import PropTypes from 'prop-types';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -100,6 +101,7 @@ Header.defaultProps = {
   
 const NestedMenu01 = ({ menus, selectedKey, openKeys }) => {
     const classes = useStyles();
+    const history = useHistory();
     const [currentKey, setCurrentKey] = useState(selectedKey || '');
     const [currentOpenKeys, setCurrentOpenKeys] = useState(openKeys || []);
     console.log('currentOpenKeys', currentOpenKeys);
@@ -135,9 +137,12 @@ const NestedMenu01 = ({ menus, selectedKey, openKeys }) => {
             }
             expanded={currentOpenKeys.includes(key)}
             separated={separated}
+// **********************Trigger for Card?***********************
             onMenuClick={() => {
                 if (!subMenus || separated) {
-                setCurrentKey(key);
+                    setCurrentKey(key),
+                    history.push(`/resources/${currentKey}`)
+                    {handleDrawerToggle}
                 }
                 if (subMenus && !currentOpenKeys.includes(key)) {
                 handleToggle(key)();
