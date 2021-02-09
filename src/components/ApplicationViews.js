@@ -2,6 +2,7 @@ import React from 'react'
 import { Route } from "react-router-dom"
 import { ResponsiveClippedDrawer } from './AppBarDrawer'
 import  { LandingPage } from './LandingPage'
+import { PoliceFireMap } from './PoliceFireMap'
 import { ResourceMap } from './ResourceMap'
 
 export const ApplicationViews = () => {
@@ -18,6 +19,7 @@ export const ApplicationViews = () => {
                 <ResponsiveClippedDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}/>
                 <LandingPage mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
                 <ResourceMap />
+                <PoliceFireMap />
                 
             </Route>
 
