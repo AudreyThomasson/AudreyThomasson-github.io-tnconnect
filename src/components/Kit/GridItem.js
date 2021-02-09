@@ -12,7 +12,8 @@ const styles = {
     minHeight: "1px",
     paddingRight: "1.5rem",
     paddingLeft: "1.5rem",
-    flexBasis: "auto"
+    flexBasis: "auto",
+  
   },
   section: {
     padding: "70px 0",

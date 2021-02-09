@@ -4,10 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
-
-
-import Parallax from "./Kit/Parallax.js";
-import GridContainer from "./Kit/GridContainer.js";
 import GridItem from "./Kit/GridItem.js";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,11 +34,11 @@ const useStyles = makeStyles((theme) => ({
   //   zIndex: "3"
   // },
   mainRaised: {
-    margin: "20px 30px 0px",
+    margin: "20px 30px 20px",
     borderRadius: "6px",
     boxShadow:
-      "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)"
-  },
+      "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)",
+    },
 
   humaaans: {
     backgroundImage: "url(/images/TNConnect-HumaaansGroup.svg)",
@@ -60,13 +56,21 @@ const useStyles = makeStyles((theme) => ({
   },
 
   title: {
-    color: '#E51111'
+    // color: '#E51111'
+    // color: '#2196F3'
+    color: '#1976D2',
+    textAlign: "center",
+    paddingTop: "20px",
   
   },
   description: { 
     color: "#5e5e5e",
-    font: "Open Sans",
+    marginTop: "-10px",
   },
+  searchButton: {
+    display: "flex",
+    justifyContent: "center",
+  }
 }));
 
 
@@ -79,7 +83,6 @@ export const LandingPage = (props) => {
     <main className={classes.content}>
       <Toolbar />
       <div   className={classes.humaaans} alt='colorful illustration of group of people'/>
-      {/* <Parallax filter image={require("../images/TNConnect-HumaaansGroup.png")} /> */}
   
       <div className={classes.mainRaised}>
         <div className={classes.container, classes.section}>
@@ -93,10 +96,11 @@ export const LandingPage = (props) => {
                 </h4>
                 <Button
                   variant="contained"
-                  open={props.mobileOpen}
-                  color="primary"
+                  color="secondary"
                   aria-label="open drawer"
+                  open={props.mobileOpen}
                   onClick={props.handleDrawerToggle}
+                  className='searchButton'
                   disableElevation
                 >
                 Search by Category

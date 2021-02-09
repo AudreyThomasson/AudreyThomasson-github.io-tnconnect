@@ -6,41 +6,43 @@ import Grid from "@material-ui/core/Grid";
 
 
 const useStyles = makeStyles((theme) => ({
-    city: {
-        width: "350px",
-        height: "250px",
-    },
+  
     container: {
-        "@media (min-width: 576px)": {
-          maxWidth: "540px"
-        },
-        "@media (min-width: 768px)": {
-          maxWidth: "720px"
-        },
-        "@media (min-width: 992px)": {
-          maxWidth: "960px"
-        },
-        "@media (min-width: 1200px)": {
-          maxWidth: "1140px"
-        },
+        background: "#63a4ff",
+        width: "100%",
+       
     },
     mainRounded: {
+        "@media (min-width: 576px)": {
+            maxWidth: "540px"
+          },
+          "@media (min-width: 768px)": {
+            maxWidth: "720px"
+          },
+          "@media (min-width: 992px)": {
+            maxWidth: "960px"
+          },
+          "@media (min-width: 1200px)": {
+            maxWidth: "1140px"
+          },
         background: "#FFFFFF",
-        margin: "20px 30px 0px",
+        margin: "40px 30px 0px",
+        padding: "20px 0px 20px",
         borderRadius: "6px",
         // boxShadow:
         //     "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)"
-        },
+    },
+   
 }));
 
 export const ResourceMap = (props) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.mainRounded}>
-        <div className={classes.container, classes.section}>
+        <div className={classes.container}>
+            <div className={classes.mainRounded}>
         <Grid justify="center">
-            <GridItem xs={12} sm={12} md={8}>
+            <GridItem xs={12} sm={12} md={8} >
                 <div >
                     <ScriptTag
                         type="text/javascript"
