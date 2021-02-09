@@ -1,7 +1,12 @@
 import React, { useState, createContext } from "react"
 import { keys } from "../Settings.js";
 
-let help = [];
+let CommRes = [];
+let Fire = [];
+let Library = [];
+let Police = [];
+let Wifi = [];
+
 const key = keys.AppToken;
 
 
@@ -15,13 +20,42 @@ export const HelpContext = createContext()
  */
 
 export const HelpProvider = (props) => {
-    const [help, setHelp] = useState([])
+    const [CommRes, setCommRes] = useState([])
+    const [Fire, setFire] = useState([])
+    const [Library, setLibrary] = useState([])
+    const [Police, setPolice] = useState([])
+    const [Wifi, setWifi] = useState([])
+
     const [ searchTerms, setSearchTerms ] = useState("")
 
-    const getHelp = () => {
+    const getCommRes = () => {
     return fetch(`https://data.nashville.gov/resource/ekvg-j2ns.json?$$app_token=${key}`)
     .then(response => response.json())
-    .then(setHelp)
+    .then(setCommRes)
+    }
+
+    const getFire = () => {
+        return fetch(`https://data.nashville.gov/resource/frq9-a5iv.json?$$app_token=${key}`)
+        .then(response => response.json())
+        .then(setFire)
+    }
+
+    const getLibrary = () => {
+        return fetch(`https://data.nashville.gov/resource/vn5u-d69i.json?$$app_token=${key}`)
+        .then(response => response.json())
+        .then(setLibrary)
+    }
+
+    const getPolice = () => {
+        return fetch(`https://data.nashville.gov/resource/y5ik-ut5s.json?$$app_token=${key}`)
+        .then(response => response.json())
+        .then(setPolice)
+    }
+
+    const getWifi = () => {
+        return fetch(`https://data.nashville.gov/resource/4ugp-s85t.json?$$app_token=${key}`)
+        .then(response => response.json())
+        .then(setWifi)
     }
 
 
@@ -34,7 +68,7 @@ export const HelpProvider = (props) => {
     */
     return (
         <HelpContext.Provider value={{
-            help, getHelp, searchTerms, setSearchTerms
+            Fire, getFire, Library, getLibrary, Police, getPolice, Wifi, getWifi, searchTerms, setSearchTerms
         }}>
             {props.children}
         </HelpContext.Provider>

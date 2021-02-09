@@ -9,6 +9,7 @@ import GridItem from "./Kit/GridItem.js";
 const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
+    
     },
 
   container: {
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
   //   zIndex: "3"
   // },
   mainRaised: {
+  
     margin: "20px 30px 20px",
     borderRadius: "6px",
     boxShadow:
@@ -67,10 +69,9 @@ const useStyles = makeStyles((theme) => ({
     color: "#5e5e5e",
     marginTop: "-10px",
   },
-  searchButton: {
-    display: "flex",
-    justifyContent: "center",
-  }
+  // searchButton: {
+  //   textAlign: 'center'
+  // }
 }));
 
 
@@ -84,23 +85,23 @@ export const LandingPage = (props) => {
       <Toolbar />
       <div   className={classes.humaaans} alt='colorful illustration of group of people'/>
   
-      <div className={classes.mainRaised}>
-        <div className={classes.container, classes.section}>
+      <div className={classes.mainRaised}  >
+        <div className={classes.container, classes.section} >
         
-            <Grid justify="center">
-              <GridItem xs={12} sm={12} md={8}>
+            <Grid justify="center" >
+              <GridItem xs={12} sm={12} md={8} style={{justifyContent: 'center'}}>
                 <h1 className={classes.title} >We are here to help!</h1>
                 <h4 className={classes.description}>
                   Don't struggle alone. Nashville.gov maintains a list of resources available to help residents.
                   Click on the button below to filter by category.
                 </h4>
+                
                 <Button
                   variant="contained"
                   color="secondary"
                   aria-label="open drawer"
                   open={props.mobileOpen}
                   onClick={props.handleDrawerToggle}
-                  className='searchButton'
                   disableElevation
                 >
                 Search by Category
