@@ -2,11 +2,11 @@
 
 const getCategories = () => [
     {
-    key: 'children',
+    key: 'children-main',
     label: "Children's Services",
     subMenus: [
         { key: 'childcare', label: 'Childcare' },
-        { key: 'children-sub', label: "Children's Services" },
+        { key: 'children', label: "Children's Services" },
         { key: 'teen', label: 'Teen Services' },
         { key: 'christmas', label: 'Christmas' },
         ],
@@ -15,10 +15,10 @@ const getCategories = () => [
     { key: 'clothing', label: 'Clothing Assistance' },
 
     { 
-    key: 'crisis',
+    key: 'crisis-main',
     label: 'Crisis Services',
     subMenus: [
-        { key: 'crisis-sub', label: 'Crisis Info Resources' },
+        { key: 'crisis', label: 'Crisis Info Resources' },
         { key: 'rehab', label: 'Rehab- Drug / Alcohol' },
         { key: 'counseling', label: 'Counseling' },
         { key: 'teen', label: 'Teen Services' },
@@ -29,10 +29,10 @@ const getCategories = () => [
     },
 
     { 
-    key: 'disability',
+    key: 'disability-main',
     label: 'Disability Services',
     subMenus: [
-        { key: 'disability-sub', label: 'Disability' },
+        { key: 'disability', label: 'Disability' },
         { key: 's-d-housing', label: 'Senior / Disabled Housing' },
         { key: 'mens', label: "Men's Resources" },
     ],
@@ -46,6 +46,7 @@ const getCategories = () => [
         { key: 'ged', label: 'GED / Education' },
         { key: 'training', label: 'Job Training' },
         { key: 'library', label: 'Library Locations' },
+        { key: 'wifi', label: 'Public Wi-Fi Locations' },
     ],
     },
 
@@ -77,7 +78,7 @@ const getCategories = () => [
     label: "Family Services",
     subMenus: [
         { key: 'childcare', label: 'Childcare' },
-        { key: 'children-sub', label: "Children's Services" },
+        { key: 'children', label: "Children's Services" },
         { key: 'counseling', label: 'Counseling'},
         { key: 'insurance', label: 'Health Insurance'},
         { key: 'teen', label: 'Teen Services' },
@@ -104,9 +105,9 @@ const getCategories = () => [
     subMenus: [
         { key: 'insurance', label: 'Health Insurance'},
         { key: 'medical', label: 'Medical / Dental' },
-        { key: 'disability-sub', label: 'Disability' },
+        { key: 'disability', label: 'Disability' },
         { key: 'rehab', label: 'Rehab- Drug / Alcohol' },
-        { key: 'crisis-sub', label: 'Crisis Info Resources' },
+        { key: 'crisis', label: 'Crisis Info Resources' },
         { key: 'counseling', label: 'Counseling'},
         { key: 'teen', label: 'Teen Services' },
         { key: 'mens', label: "Men's Resources" },
@@ -132,17 +133,17 @@ const getCategories = () => [
         { key: 'ged', label: 'GED / Education' },
         { key: 'img-ref', label: 'Immigration / Refugee' },
         { key: 'lawyer-i', label: 'Lawyer (immigration)' },
-        { key: 'legal-assist', label: 'Legal Assistance' },
+        { key: 'legal', label: 'Legal Assistance' },
     ],
     },
 
     { 
-    key: 'legal',
+    key: 'legal-services',
     label: 'Legal Services',
     subMenus: [
         { key: 'lawyer-d', label: 'Lawyer (divorce)' },
         { key: 'lawyer-i', label: 'Lawyer (immigration)' },
-        { key: 'legal-assist', label: 'Legal Assistance' },
+        { key: 'legal', label: 'Legal Assistance' },
         { key: 'tax', label: 'Tax Prep' },
     ],
     },

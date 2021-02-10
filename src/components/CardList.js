@@ -5,6 +5,7 @@ import OneCard from "./Card"
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/styles';
 import { HelpProvider, HelpContext } from './ApiProvider'
+import { CommResProvider, CommResContext } from "./CommResProvider";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,18 +21,14 @@ export const CardList = () => {
     const classes = useStyles();
     const { key } = useParams();
     const { fire, police, wifi, library, searchTerms } = useContext(HelpContext)
-
+    const { commRes, childcare, children, christmas, clothing, counseling, crisis, disability, esl, food,
+        ged, health, housing, imgref, training, lawyerD, lawyerI, legal, medical, mens, pet, phone, rehab, rent,
+        sdHousing, tax, teen, transport, searchTerms } = useContext(CommResContext)
     // Sets the array that will be passed to the Cards and rendered based on what is chosen in the 
     // drawer menus or the search bar
     const [ filteredHelp, setFiltered ] = useState([])
 
-    // Empty dependency array - useEffect only runs after first render
-    // useEffect(() => {
-    //     getFire()
-    //     getPolice()
-    //     getWifi()
-    //     getLibrary()
-    // }, [])
+   
 
 
     // useEffect dependency array with dependencies - will run if dependency changes (state)
@@ -40,8 +37,21 @@ export const CardList = () => {
     useEffect(() => {
         if (searchTerms !== "") {
             // If the search field is being used, display matching help
-            const subset = allHelp.filter(place => place.notes.toLowerCase().includes(searchTerms.toLowerCase()))
+            const subset = commRes.filter(place => place.notes.toLowerCase().includes(searchTerms.toLowerCase())
+                 || place.name.toLowerCase().includes(searchTerms.toLowerCase()))
             setFiltered(subset)
+        } else  if ((searchTerms !== "") && (searchTerms.toLowerCase() === 'fire')) {
+            setFiltered(fire)
+        
+        } else if ((searchTerms !== "") && (searchTerms.toLowerCase() === 'police')) {
+            setFiltered(police)
+         
+        } else if ((searchTerms !== "") && (searchTerms.toLowerCase() === 'library')) {
+            setFiltered(library)
+         
+        } else  if ((searchTerms !== "") && (searchTerms.toLowerCase() === 'wifi')) {
+            setFiltered(wifi)
+        
         
         } else if (key === "fire") {
             // If the search field is blank and selected category is Fire, setFiltered to Fire

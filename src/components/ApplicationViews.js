@@ -6,7 +6,7 @@ import { PoliceFireMap } from './PoliceFireMap'
 import { ResourceMap } from './ResourceMap'
 import { CardList } from './CardList'
 import { HelpProvider, HelpContext } from './ApiProvider'
-
+import { CommResProvider, CommResContext } from './CommResProvider'
 
 export const ApplicationViews = () => {
     
@@ -17,8 +17,9 @@ export const ApplicationViews = () => {
     };
     
     // handle activating the api calls and setting the arrays of information
-    const { getCommRes, fire, getFire, police, getPolice, getWifi, wifi, getLibrary, library, searchTerms } = useContext(HelpContext)
-    
+    const { getFire, getPolice, getWifi, getLibrary } = useContext(HelpContext)
+    const { getCommRes } = useContext(CommResContext)
+
     useEffect(() => {
         getCommRes()
         getFire()
@@ -41,11 +42,12 @@ export const ApplicationViews = () => {
 
             {/* Jump to Resources as Cards Page */}
             <HelpProvider>
+            <CommResProvider>
                 <Route exact path="/resources/:(\d+)">
                     <ResponsiveClippedDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}/>
-                    <CardList />
-                    
+                    <CardList />  
                 </Route>
+            </CommResProvider>
             </HelpProvider>
 
         </>

@@ -1,13 +1,10 @@
 import React, { useState, createContext } from "react"
 import { keys } from "../Settings.js";
 
-let commRes = [];
 let fire = [];
 let library = [];
 let police = [];
 let wifi = [];
-
-const key = keys.AppToken;
 
 
 /*
@@ -20,22 +17,16 @@ export const HelpContext = createContext()
  */
 
 export const HelpProvider = (props) => {
-    const [commRes, setCommRes] = useState([])
+// the following come directly from the APIs
     const [fire, setFire] = useState([])
     const [library, setLibrary] = useState([])
     const [police, setPolice] = useState([])
     const [wifi, setWifi] = useState([])
 
-    const [ searchTerms, setSearchTerms ] = useState("")
 
-    const getCommRes = () => {
-    return fetch(`https://data.nashville.gov/resource/ekvg-j2ns.json?$$app_token=${key}`)
-    .then(response => response.json())
-    .then(setCommRes)
-    }
 
     const getFire = () => {
-        return fetch(`https://data.nashville.gov/resource/frq9-a5iv.json?$$app_token=${key}`)
+        return fetch(`https://data.nashville.gov/resource/frq9-a5iv.json?$$app_token=${keys.AppToken}`)
         .then(response => response.json())
         .then(parsedResponse => {
             const newFire = parsedResponse.map(x => {
@@ -46,7 +37,7 @@ export const HelpProvider = (props) => {
     }
 
     const getLibrary = () => {
-        return fetch(`https://data.nashville.gov/resource/vn5u-d69i.json?$$app_token=${key}`)
+        return fetch(`https://data.nashville.gov/resource/vn5u-d69i.json?$$app_token=${keys.AppToken}`)
         .then(response => response.json())
         .then(parsedResponse => {
             const newLibrary = parsedResponse.map(x => {
@@ -58,7 +49,7 @@ export const HelpProvider = (props) => {
     }
 
     const getPolice = () => {
-        return fetch(`https://data.nashville.gov/resource/y5ik-ut5s.json?$$app_token=${key}`)
+        return fetch(`https://data.nashville.gov/resource/y5ik-ut5s.json?$$app_token=${keys.AppToken}`)
         .then(response => response.json())
         .then(parsedResponse => {
             const newPolice = parsedResponse.map(x => {
@@ -69,7 +60,7 @@ export const HelpProvider = (props) => {
     }
 
     const getWifi = () => {
-        return fetch(`https://data.nashville.gov/resource/4ugp-s85t.json?$$app_token=${key}`)
+        return fetch(`https://data.nashville.gov/resource/4ugp-s85t.json?$$app_token=${keys.AppToken}`)
         .then(response => response.json())
         .then(parsedResponse => {
             const newWifi = parsedResponse.map(x => {
@@ -89,7 +80,7 @@ export const HelpProvider = (props) => {
     */
     return (
         <HelpContext.Provider value={{
-            getCommRes, fire, getFire, library, getLibrary, police, getPolice, wifi, getWifi, searchTerms, setSearchTerms
+            fire, getFire, library, getLibrary, police, getPolice, wifi, getWifi
         }}>
             {props.children}
         </HelpContext.Provider>
