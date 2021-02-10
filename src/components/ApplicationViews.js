@@ -5,8 +5,8 @@ import  { LandingPage } from './LandingPage'
 import { PoliceFireMap } from './PoliceFireMap'
 import { ResourceMap } from './ResourceMap'
 import { CardList } from './CardList'
-import { HelpProvider, HelpContext } from './ApiProvider'
-import { CommResProvider, CommResContext } from './CommResProvider'
+import { HelpContext } from './ApiProvider'
+import { CommResContext } from './CommResProvider'
 
 export const ApplicationViews = () => {
     
@@ -26,6 +26,7 @@ export const ApplicationViews = () => {
         getPolice()
         getWifi()
         getLibrary()
+
     }, [])
 
     return (
@@ -41,14 +42,12 @@ export const ApplicationViews = () => {
             </Route>
 
             {/* Jump to Resources as Cards Page */}
-            <HelpProvider>
-            <CommResProvider>
+           
                 <Route exact path="/resources/:(\d+)">
                     <ResponsiveClippedDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}/>
                     <CardList />  
                 </Route>
-            </CommResProvider>
-            </HelpProvider>
+            
 
         </>
     )

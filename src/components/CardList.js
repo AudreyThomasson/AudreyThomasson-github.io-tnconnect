@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useParams } from 'react-router-dom'
-// import { HelpContext } from "./HelpProvider"
 import OneCard from "./Card"
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/styles';
-import { HelpProvider, HelpContext } from './ApiProvider'
-import { CommResProvider, CommResContext } from "./CommResProvider";
+import { HelpContext } from './ApiProvider'
+import { CommResContext } from "./CommResProvider";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 export const CardList = () => {
     const classes = useStyles();
     const { key } = useParams();
+
     const { fire, police, wifi, library } = useContext(HelpContext)
     const { commRes, childcare, children, christmas, clothing, counseling, crisis, disability, esl, food,
         ged, health, housing, imgref, training, lawyerD, lawyerI, legal, medical, mens, pet, phone, rehab, rent,

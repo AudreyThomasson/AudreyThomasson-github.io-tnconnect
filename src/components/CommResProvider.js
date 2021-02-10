@@ -81,7 +81,10 @@ export const CommResProvider = (props) => {
         return fetch(`https://data.nashville.gov/resource/ekvg-j2ns.json?$$app_token=${keys.AppToken}`)
         .then(response => response.json())
         .then(parsedResponse => {
-            setCommRes(parsedResponse)
+            const newCommRes = parsedResponse.map(x => {
+                x['name']= x.contact
+            });
+            setCommRes(newCommRes)
         })
     }
     
