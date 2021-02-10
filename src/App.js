@@ -2,6 +2,9 @@ import React from 'react';
 import { createMuiTheme, ThemeProvider, Button } from '@material-ui/core';
 import { ApplicationViews } from './components/ApplicationViews';
 
+import { CommResProvider } from './components/CommResProvider'
+import { HelpProvider } from './components/ApiProvider';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -19,7 +22,11 @@ const theme = createMuiTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <ApplicationViews />
+      <HelpProvider>
+        <CommResProvider>
+          <ApplicationViews />
+        </CommResProvider>
+      </HelpProvider>
     </ThemeProvider>
   );
 }

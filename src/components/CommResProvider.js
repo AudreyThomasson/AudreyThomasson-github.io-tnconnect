@@ -3,6 +3,33 @@ import { keys } from "../Settings.js";
 
 
 let commRes = [];
+let childcare = [];
+let children = [];
+let christmas = [];
+let clothing = [];
+let counseling = [];
+let crisis = [];
+let disability = [];
+let esl = [];
+let food = [];
+let ged = [];
+let health = [];
+let housing = [];
+let imgref = [];
+let training = [];
+let lawyerD = [];
+let lawyerI = [];
+let legal = [];
+let medical = [];
+let mens = [];
+let pet = [];
+let phone = [];
+let rehab = [];
+let rent = [];
+let sdHousing = [];
+let tax = [];
+let teen = [];
+let transport = [];
 
 
 
@@ -47,7 +74,7 @@ export const CommResProvider = (props) => {
     const [sdHousing, setSDHousing] = useState([])
     const [tax, setTax] = useState([])
     const [teen, setTeen] = useState([])
-    const [transport, newTransport] = useState([])
+    const [transport, setTransport] = useState([])
 
 // goes to the community resource api
     const getCommRes = () => {
@@ -121,12 +148,12 @@ export const CommResProvider = (props) => {
     This allows any child elements to access them.
     */
     return (
-        <HelpContext.Provider value={{
+        <CommResContext.Provider value={{
             commRes, getCommRes, childcare, children, christmas, clothing, counseling, crisis, disability, esl, food,
             ged, health, housing, imgref, training, lawyerD, lawyerI, legal, medical, mens, pet, phone, rehab, rent,
             sdHousing, tax, teen, transport, searchTerms, setSearchTerms
         }}>
             {props.children}
-        </HelpContext.Provider>
+        </CommResContext.Provider>
     )
 }
