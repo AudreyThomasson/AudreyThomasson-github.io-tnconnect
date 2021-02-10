@@ -71,6 +71,11 @@ export const HelpProvider = (props) => {
     }
 
 
+    getFire()
+    getPolice()
+    getWifi()
+    getLibrary()
+
 
     /*
         You return a context provider which has the
@@ -80,7 +85,7 @@ export const HelpProvider = (props) => {
     */
     return (
         <HelpContext.Provider value={{
-            fire, getFire, library, getLibrary, police, getPolice, wifi, getWifi
+            fire, library, police, wifi
         }}>
             {props.children}
         </HelpContext.Provider>

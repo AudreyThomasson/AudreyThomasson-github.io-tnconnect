@@ -1,5 +1,5 @@
 import React from 'react';
-import { createMuiTheme, ThemeProvider, Button } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { ApplicationViews } from './components/ApplicationViews';
 
 import { CommResProvider } from './components/CommResProvider'
