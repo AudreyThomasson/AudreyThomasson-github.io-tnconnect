@@ -1,15 +1,8 @@
-import React, { useState, createContext } from "react"
+import React, { useState, createContext, useEffect } from "react"
 import { keys } from "../Settings.js";
 
-let fire = [];
-let library = [];
-let police = [];
-let wifi = [];
-
-
 /*
-    The context is imported and used by individual components
-    that need data
+    The context is imported and used by individual components that need data
 */
 export const HelpContext = createContext()
 /*
@@ -70,11 +63,14 @@ export const HelpProvider = (props) => {
         })
     }
 
+    useEffect(() => {
+        getFire()
+        getPolice()
+        getWifi()
+        getLibrary()
 
-    getFire()
-    getPolice()
-    getWifi()
-    getLibrary()
+    }, [])
+    
 
 
     /*

@@ -10,11 +10,11 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#1976D2"
-      // main: "#5b9ec9"
+     
     },
     secondary: {
       main: "#8bc34e"
-      // main: "#98d277"
+      
     }
   }
 });
@@ -23,9 +23,9 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <HelpProvider>
-        <CommResProvider>
+        {/* <CommResProvider> */}
           <ApplicationViews />
-        </CommResProvider>
+        {/* </CommResProvider> */}
       </HelpProvider>
     </ThemeProvider>
   );

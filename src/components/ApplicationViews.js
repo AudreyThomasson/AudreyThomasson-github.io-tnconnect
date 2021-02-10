@@ -5,8 +5,6 @@ import  { LandingPage } from './LandingPage'
 import { PoliceFireMap } from './PoliceFireMap'
 import { ResourceMap } from './ResourceMap'
 import { CardList } from './CardList'
-import { HelpContext } from './ApiProvider'
-import { CommResContext } from './CommResProvider'
 
 export const ApplicationViews = () => {
     // global handling of the search Modal
@@ -24,18 +22,6 @@ export const ApplicationViews = () => {
         setMobileOpen(!mobileOpen);
     };
     
-    // handle activating the api calls and setting the arrays of information
-    // const { getFire, getPolice, getWifi, getLibrary } = useContext(HelpContext)
-    // const { getCommRes } = useContext(CommResContext)
-
-    // useEffect(() => {
-    //     getCommRes()
-    //     getFire()
-    //     getPolice()
-    //     getWifi()
-    //     getLibrary()
-
-    // }, [])
 
     return (
         <>

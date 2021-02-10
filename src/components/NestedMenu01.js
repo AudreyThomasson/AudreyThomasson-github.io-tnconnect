@@ -104,7 +104,6 @@ const NestedMenu01 = ({ menus, selectedKey, openKeys, mobileOpen, handleDrawerTo
     const history = useHistory();
     const [currentKey, setCurrentKey] = useState(selectedKey || '');
     const [currentOpenKeys, setCurrentOpenKeys] = useState(openKeys || []);
-    console.log('currentOpenKeys', currentOpenKeys);
 
     useEffect(() => {
         setCurrentKey(selectedKey);
