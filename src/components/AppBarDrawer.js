@@ -14,6 +14,8 @@ import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import getCategories from './NestedDrawerCategories';
 import NestedMenu01 from './NestedMenu01';
+import { useHistory } from "react-router-dom"
+
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -93,6 +95,8 @@ export const ResponsiveClippedDrawer = (props) => {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
+  const history = useHistory();
+
 
   const container = window !== undefined ? () => window().document.body : undefined;
 

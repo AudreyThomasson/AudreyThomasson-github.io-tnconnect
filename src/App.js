@@ -1,7 +1,6 @@
 import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { ApplicationViews } from './components/ApplicationViews';
-
 import { CommResProvider } from './components/CommResProvider'
 import { HelpProvider } from './components/ApiProvider';
 
@@ -23,9 +22,9 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <HelpProvider>
-        {/* <CommResProvider> */}
+        <CommResProvider>
           <ApplicationViews />
-        {/* </CommResProvider> */}
+        </CommResProvider>
       </HelpProvider>
     </ThemeProvider>
   );

@@ -8,6 +8,8 @@ import { CommResContext } from "./CommResProvider";
 
 
 const useStyles = makeStyles((theme) => ({
+    position: "relative",
+    width: "100%",
     title: {
         color: '#1976D2',
         textAlign: "center",
@@ -24,26 +26,15 @@ export const CardList = () => {
     console.log('chosen item', chosen)
 
     const { getFire, fire, getPolice, police, getWifi, wifi, getLibrary, library } = useContext(HelpContext)
-    // const { commRes, childcare, children, christmas, clothing, counseling, crisis, disability, esl, food,
-    //     ged, health, housing, imgref, training, lawyerD, lawyerI, legal, medical, mens, pet, phone, rehab, rent,
-    //     sdHousing, tax, teen, transport } = useContext(CommResContext)
+    const { commRes} = useContext(CommResContext)
+        // const { commRes, childcare, children, christmas, clothing, counseling, crisis, disability, esl, food,
+        //     ged, health, housing, imgref, training, lawyerD, lawyerI, legal, medical, mens, pet, phone, rehab, rent,
+        //     sdHousing, tax, teen, transport } = useContext(CommResContext)
     // Sets the array that will be passed to the Cards and rendered based on what is chosen in the 
     // drawer menus or the search bar
     const [ filteredHelp, setFiltered ] = useState([])
 
-    // const getFire = () => {
-    //     return fetch(`https://data.nashville.gov/resource/frq9-a5iv.json?$$app_token=${keys.AppToken}`)
-    //     .then(response => response.json())
-    //     .then(parsedResponse => {
-    //         const newFire = parsedResponse.map(x => {
-    //             const newObj = {...x}
-    //             newObj.name = x.station_number
-    //         return newObj
-    //     });
-    //         return newFire
-    //     })  
-    // }
-    console.log('from helpProvider', fire)
+    // console.log('from helpProvider', childcare)
     
     useEffect(() => {
         if (chosen.key === "fire") {
@@ -60,10 +51,16 @@ export const CardList = () => {
                 setFiltered(parsedResponse)
             })
         
-        } else if ((chosen.key === "library") || (chosen.key === "library-main"))
+        } else if ((chosen.key === "library") || (chosen.key === "library-main")) {
             getLibrary().then(parsedResponse => {
                 setFiltered(parsedResponse)
             })
+        }
+ 
+        // } else if (chosen.key === "childcare") {
+        //     setFiltered(childcare)
+        // }
+            
     }, [chosen.key])
     // useEffect dependency array with dependencies - will run if dependency changes (state)
     // Filters for searchTerms or a selection on the drawer menus
@@ -86,19 +83,7 @@ export const CardList = () => {
         // } else  if ((searchTerms !== "") && (searchTerms.toLowerCase() === 'wifi')) {
         //     setFiltered(wifi)
         
-        // if (chosen.key === "fire") {
-        //     // If the search field is blank and selected category is Fire, setFiltered to Fire
-        //     setFiltered(fire)
-        
-        // } else if (chosen.key === "police") {
-        //     setFiltered(police)
-        
-        // } else if ((chosen.key === "library") || (chosen.key === "library-main")) {
-        //     setFiltered(library)
-       
-        // } else if ((chosen.key === "wifi") || (chosen.key === "wifi-main")) {
-        //     setFiltered(wifi)
-        // }
+      
 
         // } else if (key === "childcare") {
         //     setFiltered(childcare)
@@ -158,19 +143,7 @@ export const CardList = () => {
     //     }
     // }, [chosen.key])
 // }, [searchTerms, key])
-    // if (chosen.key === "fire") {
-    //         // If the search field is blank and selected category is Fire, setFiltered to Fire
-    //         setFiltered(fire)
-        
-    //     } else if (chosen.key === "police") {
-    //         setFiltered(police)
-        
-    //     } else if ((chosen.key === "library") || (chosen.key === "library-main")) {
-    //         setFiltered(library)
-       
-    //     } else if ((chosen.key === "wifi") || (chosen.key === "wifi-main")) {
-    //         setFiltered(wifi)
-    //     }
+  
 
     console.log('filteredHelp', filteredHelp)
 
@@ -185,8 +158,8 @@ export const CardList = () => {
     return (
         <>
             
-            <Grid justify="center" >           
-                <h1 className='classes.title'>Community Resources</h1>
+            <Grid style={{justifyContent: 'center'}}>           
+                <h1 className='classes.title' >Community Resources</h1>
                 <br/>
                 
                 <>
