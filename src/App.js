@@ -1,17 +1,20 @@
 import React from 'react';
-import { createMuiTheme, ThemeProvider, Button } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { ApplicationViews } from './components/ApplicationViews';
+
+import { CommResProvider } from './components/CommResProvider'
+import { HelpProvider } from './components/ApiProvider';
 
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#1976D2"
-      // main: "#5b9ec9"
+     
     },
     secondary: {
       main: "#8bc34e"
-      // main: "#98d277"
+      
     }
   }
 });
@@ -19,7 +22,11 @@ const theme = createMuiTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <ApplicationViews />
+      <HelpProvider>
+        {/* <CommResProvider> */}
+          <ApplicationViews />
+        {/* </CommResProvider> */}
+      </HelpProvider>
     </ThemeProvider>
   );
 }

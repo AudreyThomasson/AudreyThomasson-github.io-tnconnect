@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom"
 import cx from 'clsx';
 import PropTypes from 'prop-types';
 import MenuItem from '@material-ui/core/MenuItem';
 import Icon from '@material-ui/core/Icon';
 import Collapse from '@material-ui/core/Collapse';
 import { makeStyles } from '@material-ui/styles';
+import { FormatAlignLeftSharp } from '@material-ui/icons';
   
 const useStyles = makeStyles(theme => {
     const { palette } = theme;
@@ -98,11 +100,11 @@ Header.defaultProps = {
     onMenuClick: () => {},
 };
   
-const NestedMenu01 = ({ menus, selectedKey, openKeys }) => {
+const NestedMenu01 = ({ menus, selectedKey, openKeys, mobileOpen, handleDrawerToggle }) => {
     const classes = useStyles();
+    const history = useHistory();
     const [currentKey, setCurrentKey] = useState(selectedKey || '');
     const [currentOpenKeys, setCurrentOpenKeys] = useState(openKeys || []);
-    console.log('currentOpenKeys', currentOpenKeys);
 
     useEffect(() => {
         setCurrentKey(selectedKey);
@@ -135,9 +137,14 @@ const NestedMenu01 = ({ menus, selectedKey, openKeys }) => {
             }
             expanded={currentOpenKeys.includes(key)}
             separated={separated}
+// **********************Trigger for Card when item is a Main Menu item***********************
             onMenuClick={() => {
                 if (!subMenus || separated) {
-                setCurrentKey(key);
+                    setCurrentKey(key)
+                    history.push(`/resources/${key}`)
+                    console.log('from NestedMenu01', key)
+                    mobileOpen={mobileOpen} 
+                    handleDrawerToggle={handleDrawerToggle}
                 }
                 if (subMenus && !currentOpenKeys.includes(key)) {
                 handleToggle(key)();
@@ -156,7 +163,18 @@ const NestedMenu01 = ({ menus, selectedKey, openKeys }) => {
                 currentKey === key && classes[`sub${level}Selected`],
                 currentOpenKeys.includes(key) && classes[`sub${level}Expanded`],
             )}
-            onClick={() => (subMenus ? handleToggle(key)() : setCurrentKey(key))}
+// **********************Trigger for Card when item is a SubMenu item***********************
+            onClick={() => (
+                subMenus ? 
+                    handleToggle(key)
+
+                :   (setCurrentKey(key),
+                    history.push(`/resources/${key}`),
+                    console.log('from NestedMenu01', key),
+                    mobileOpen={mobileOpen},
+                    handleDrawerToggle={handleDrawerToggle})
+            )}
+
             {...rest}
             >
             {label}

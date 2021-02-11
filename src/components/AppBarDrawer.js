@@ -2,23 +2,24 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Fab from '@material-ui/core/Fab';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import Button from '@material-ui/core/Button';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import Toolbar from '@material-ui/core/Toolbar';
 import TuneIcon from '@material-ui/icons/Tune';
 import Typography from '@material-ui/core/Typography';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Zoom from '@material-ui/core/Zoom';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import getCategories from './NestedDrawerCategories';
 import NestedMenu01 from './NestedMenu01';
-import OneCard from './Card';
-import { LandingPage } from './LandingPage';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 const drawerWidth = 240;
@@ -41,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
             marginLeft: drawerWidth,
         },
     },
-    
+    // -----------------SEARCH--------------------
+   
+    // -------------------------FILTER BUTTON------------------
     filterButton: {
         marginRight: theme.spacing(2),
         [theme.breakpoints.up('sm')]: {
@@ -49,10 +52,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     
-    bar: {
-        borderBottom: 10,
-        borderBlockColor: '#1976D2',
-    },
     
     title: {
         flexGrow: 1,
@@ -89,31 +88,6 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-// function ScrollTop(props) {
-//     const { children } = props;
-//     const classes = useStyles();
-  
-//     const trigger = useScrollTrigger({
-//       disableHysteresis: true,
-//       threshold: 100,
-//     });
-  
-//     const handleClick = (event) => {
-//       const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
-  
-//       if (anchor) {
-//         anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-//       }
-//     };
-  
-//     return (
-//       <Zoom in={trigger}>
-//         <div onClick={handleClick} role="presentation" className={classes.root}>
-//           {children}
-//         </div>
-//       </Zoom>
-//     );
-// }
 
 export const ResponsiveClippedDrawer = (props) => {
   const { window } = props;
@@ -141,9 +115,40 @@ export const ResponsiveClippedDrawer = (props) => {
                     <img src="/images/TNConnect-FULL-Logo.svg" className={classes.logo} alt='Logo with hour outlines of people in circle forming a plus sign'/>
                     </Typography>
 
-                    <IconButton color="secondary">
+                    {/* -----------SEARCH MODAL---------- */}
+                    {/* <div>
+                        <IconButton color="secondary" onClick={handleClickOpen}>
+                            <SearchIcon />
+                        </IconButton>
+      
+                        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                            <DialogTitle id="form-dialog-title">Community Resource Search</DialogTitle>
+                            <DialogContent>
+                            <DialogContentText>
+                                Search...
+                            </DialogContentText>
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="name"
+                                label="SearchTermsEmail Address"
+                                type="email"
+                                fullWidth
+                            />
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                                Cancel
+                            </Button>
+                            <Button onClick={handleClose} color="primary">
+                                Search
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div> */}
+                    {/* <IconButton color="secondary">
                         <SearchIcon />
-                    </IconButton>
+                    </IconButton> */}
                 </Toolbar>
             </AppBar>
             <Toolbar id="back-to-top-anchor" />
@@ -177,7 +182,7 @@ export const ResponsiveClippedDrawer = (props) => {
                     </ListSubheader>
                 }>
 
-                <NestedMenu01 menus={getCategories()} selectedKeys={['button']} />
+                <NestedMenu01 menus={getCategories()} selectedKeys={['button']} mobileOpen={props.mobileOpen} handleDrawerToggle={props.handleDrawerToggle}/>
             </List>
           </Drawer>
         </Hidden>
@@ -210,31 +215,7 @@ export const ResponsiveClippedDrawer = (props) => {
                 </List>
             </Drawer>
         </Hidden>
-     
-
-            {/* <main className={classes.content}>
-                <Toolbar /> */}
-
-                    {/* <OneCard /> */}
-                    {/* <LandingPage /> */}
-                    {/* <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-                    facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-                    tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-                    consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-                    vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-                    hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-                    tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-                    nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-                    accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-                    </Typography> */}
-            {/* </main> */}
-
-            {/* <ScrollTop {...props}>
-                <Fab color="secondary" size="small" aria-label="scroll back to top">
-                <KeyboardArrowUpIcon />
-                </Fab>
-            </ScrollTop> */}
+        
         </div>
     );
 }
