@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Icon from '@material-ui/core/Icon';
 import Collapse from '@material-ui/core/Collapse';
 import { makeStyles } from '@material-ui/styles';
+import { FormatAlignLeftSharp } from '@material-ui/icons';
   
 const useStyles = makeStyles(theme => {
     const { palette } = theme;
@@ -136,11 +137,12 @@ const NestedMenu01 = ({ menus, selectedKey, openKeys, mobileOpen, handleDrawerTo
             }
             expanded={currentOpenKeys.includes(key)}
             separated={separated}
-// **********************Trigger for Card?***********************
+// **********************Trigger for Card when item is a Main Menu item***********************
             onMenuClick={() => {
                 if (!subMenus || separated) {
                     setCurrentKey(key)
                     history.push(`/resources/${key}`)
+                    console.log('from NestedMenu01', key)
                     mobileOpen={mobileOpen} 
                     handleDrawerToggle={handleDrawerToggle}
                 }
@@ -161,7 +163,18 @@ const NestedMenu01 = ({ menus, selectedKey, openKeys, mobileOpen, handleDrawerTo
                 currentKey === key && classes[`sub${level}Selected`],
                 currentOpenKeys.includes(key) && classes[`sub${level}Expanded`],
             )}
-            onClick={() => (subMenus ? handleToggle(key)() : setCurrentKey(key))}
+// **********************Trigger for Card when item is a SubMenu item***********************
+            onClick={() => (
+                subMenus ? 
+                    handleToggle(key)
+
+                :   (setCurrentKey(key),
+                    history.push(`/resources/${key}`),
+                    console.log('from NestedMenu01', key),
+                    mobileOpen={mobileOpen},
+                    handleDrawerToggle={handleDrawerToggle})
+            )}
+
             {...rest}
             >
             {label}

@@ -3,14 +3,22 @@ import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
-import GridItem from "./Kit/GridItem.js";
 
 const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
   },
-
+  
   container: {
+    position: "relative",
+    width: "100%",
+    minHeight: "1px",
+    paddingRight: "1.5rem",
+    paddingLeft: "1.5rem",
+    paddingBottom: "2.5rem",
+    flexBasis: "auto",
+
+
     "@media (min-width: 576px)": {
       maxWidth: "540px"
     },
@@ -22,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
     },
     "@media (min-width: 1200px)": {
       maxWidth: "1140px"
-    }, 
+    },
+  
   },
   
   mainRaised: {
@@ -50,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: '#1976D2',
     textAlign: "center",
-    paddingTop: "20px",
+    paddingTop: ".4rem",
   },
 
   description: { 
@@ -72,9 +81,8 @@ export const LandingPage = (props) => {
   
       <div className={classes.mainRaised}  >
         <div className={classes.container} >
-        
-            <Grid justify="center" >
-              <GridItem xs={12} sm={12} md={8} style={{justifyContent: 'center'}}>
+              <Grid container xs={12} style={{justifyContent: 'center'}}>
+
                 <h1 className={classes.title} >We are here to help!</h1>
                 <h4 className={classes.description}>
                   Don't struggle alone. Nashville.gov maintains a list of resources available to help residents.
@@ -91,8 +99,7 @@ export const LandingPage = (props) => {
                 >
                 Search by Category
                 </Button>
-                
-              </GridItem>
+                              
             </Grid>
         </div>
       </div>

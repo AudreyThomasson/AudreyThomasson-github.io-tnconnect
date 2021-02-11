@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import OneCard from "./Card"
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from '@material-ui/styles';
-import { HelpContext } from './ApiProvider'
+import { HelpContext, HelpProvider } from './ApiProvider'
 import { CommResContext } from "./CommResProvider";
 
 
@@ -12,15 +12,18 @@ const useStyles = makeStyles((theme) => ({
         color: '#1976D2',
         textAlign: "center",
         paddingTop: "20px",
+        justifyContent: 'center'
     
     },
 }));
 
 export const CardList = () => {
     const classes = useStyles();
-    const { key } = useParams();
+    const chosen = useParams();
 
-    const { fire, police, wifi, library } = useContext(HelpContext)
+    console.log('chosen item', chosen)
+
+    const { getFire, fire, getPolice, police, getWifi, wifi, getLibrary, library } = useContext(HelpContext)
     // const { commRes, childcare, children, christmas, clothing, counseling, crisis, disability, esl, food,
     //     ged, health, housing, imgref, training, lawyerD, lawyerI, legal, medical, mens, pet, phone, rehab, rent,
     //     sdHousing, tax, teen, transport } = useContext(CommResContext)
@@ -28,13 +31,44 @@ export const CardList = () => {
     // drawer menus or the search bar
     const [ filteredHelp, setFiltered ] = useState([])
 
-   
-
-
+    // const getFire = () => {
+    //     return fetch(`https://data.nashville.gov/resource/frq9-a5iv.json?$$app_token=${keys.AppToken}`)
+    //     .then(response => response.json())
+    //     .then(parsedResponse => {
+    //         const newFire = parsedResponse.map(x => {
+    //             const newObj = {...x}
+    //             newObj.name = x.station_number
+    //         return newObj
+    //     });
+    //         return newFire
+    //     })  
+    // }
+    console.log('from helpProvider', fire)
+    
+    useEffect(() => {
+        if (chosen.key === "fire") {
+            getFire().then(parsedResponse => {
+                setFiltered(parsedResponse)
+            })
+        
+        } else if (chosen.key === "police") {
+            getPolice().then(parsedResponse => {
+                setFiltered(parsedResponse)
+            })
+        } else if ((chosen.key === "wifi") || (chosen.key === "wifi-main")) {
+            getWifi().then(parsedResponse => {
+                setFiltered(parsedResponse)
+            })
+        
+        } else if ((chosen.key === "library") || (chosen.key === "library-main"))
+            getLibrary().then(parsedResponse => {
+                setFiltered(parsedResponse)
+            })
+    }, [chosen.key])
     // useEffect dependency array with dependencies - will run if dependency changes (state)
     // Filters for searchTerms or a selection on the drawer menus
     // searchTerms will cause a change
-    useEffect(() => {
+    // useEffect(() => {
         // if (searchTerms !== "") {
         //     // If the search field is being used, display matching help
         //     const subset = commRes.filter(place => place.notes.toLowerCase().includes(searchTerms.toLowerCase())
@@ -52,20 +86,19 @@ export const CardList = () => {
         // } else  if ((searchTerms !== "") && (searchTerms.toLowerCase() === 'wifi')) {
         //     setFiltered(wifi)
         
+        // if (chosen.key === "fire") {
+        //     // If the search field is blank and selected category is Fire, setFiltered to Fire
+        //     setFiltered(fire)
         
-        if (key === "fire") {
-            // If the search field is blank and selected category is Fire, setFiltered to Fire
-            setFiltered(fire)
+        // } else if (chosen.key === "police") {
+        //     setFiltered(police)
         
-        } else if (key === "police") {
-            setFiltered(police)
-        
-        } else if ((key === "library") || (key === "library-main")) {
-            setFiltered(library)
+        // } else if ((chosen.key === "library") || (chosen.key === "library-main")) {
+        //     setFiltered(library)
        
-        } else if ((key === "wifi") || (key === "wifi-main")) {
-            setFiltered(wifi)
-        }
+        // } else if ((chosen.key === "wifi") || (chosen.key === "wifi-main")) {
+        //     setFiltered(wifi)
+        // }
 
         // } else if (key === "childcare") {
         //     setFiltered(childcare)
@@ -122,23 +155,44 @@ export const CardList = () => {
         // } else if ((key === "transport") || (key === "transport-main")) {
         //     setFiltered(transport)
         // }
-    }, [key])
+    //     }
+    // }, [chosen.key])
 // }, [searchTerms, key])
+    // if (chosen.key === "fire") {
+    //         // If the search field is blank and selected category is Fire, setFiltered to Fire
+    //         setFiltered(fire)
+        
+    //     } else if (chosen.key === "police") {
+    //         setFiltered(police)
+        
+    //     } else if ((chosen.key === "library") || (chosen.key === "library-main")) {
+    //         setFiltered(library)
+       
+    //     } else if ((chosen.key === "wifi") || (chosen.key === "wifi-main")) {
+    //         setFiltered(wifi)
+    //     }
 
- 
+    console.log('filteredHelp', filteredHelp)
 
-
+    const whatToShow = (help) => {
+        console.log('inside whatToShow', help.name)
+        if (help.name !== "none") {
+            return <OneCard key={help.id} help={help} />
+        } else {
+            return null
+        }
+    }
     return (
         <>
-
+            
             <Grid justify="center" >           
                 <h1 className='classes.title'>Community Resources</h1>
                 <br/>
                 
                 <>
-                    {
+                    { 
                     filteredHelp.map(help => {
-                        return <OneCard key={help.id} help={help} />
+                        return whatToShow(help)
                     })
                     }
                 </>

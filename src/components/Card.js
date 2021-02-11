@@ -30,10 +30,9 @@ const useStyles = makeStyles({
 
 
 
-const OneCard = ({ help }) => {
+const OneCard = ({help}) => {
   const classes = useStyles();
-
-
+  console.log ('a card', help)
   return (
     <Card className={classes.root}>
       <CardContent>

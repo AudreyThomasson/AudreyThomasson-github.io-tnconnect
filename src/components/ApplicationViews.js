@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Route } from "react-router-dom"
 import { ResponsiveClippedDrawer } from './AppBarDrawer'
 import  { LandingPage } from './LandingPage'
@@ -39,10 +39,10 @@ export const ApplicationViews = () => {
 
             {/* Jump to Resources as Cards Page */}
            
-                <Route exact path="/resources/:(\d+)">
+                <Route exact path="/resources/:key">
                     <ResponsiveClippedDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
                     {/* <ResponsiveClippedDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} open={open} handleClickOpen={handleClickOpen} handleClose={handleClose}/> */}
-
+                    
                     <CardList />  
                 </Route>
             

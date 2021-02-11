@@ -9,7 +9,7 @@ export const CommResContext = createContext()
  This component establishes what data can be used.
  */
 
- 
+
 export const CommResProvider = (props) => {
     const [ searchTerms, setSearchTerms ] = useState("")
 // the following is directly from the API and used for the search terms
@@ -50,9 +50,12 @@ export const CommResProvider = (props) => {
         .then(response => response.json())
         .then(parsedResponse => {
             const newCommRes = parsedResponse.map(x => {
-                x['name']= x.contact
-            });
+                const newObj = {...x}
+                newObj.name = x.contact
+            return newObj
+        });
             setCommRes(newCommRes)
+            return newCommRes
         })
     }
     
@@ -113,9 +116,9 @@ export const CommResProvider = (props) => {
         setTransport(newTransport)
    
         
-    useEffect(() => {
-        getCommRes()
-    }, [])
+    // useEffect(() => {
+    //     getCommRes()
+    // }, [])
 
 
     /*
@@ -123,10 +126,11 @@ export const CommResProvider = (props) => {
     */
     return (
         <CommResContext.Provider value={{
-            commRes, childcare, children, christmas, clothing, counseling, crisis, disability, esl, food,
+            getCommRes, commRes, childcare, children, christmas, clothing, counseling, crisis, disability, esl, food,
             ged, health, housing, imgref, training, lawyerD, lawyerI, legal, medical, mens, pet, phone, rehab, rent,
-            sdHousing, tax, teen, transport, searchTerms, setSearchTerms
+            sdHousing, tax, teen, transport
         }}>
+            {/* searchTerms, setSearchTerms */}
             {props.children}
         </CommResContext.Provider>
     )

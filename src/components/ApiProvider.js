@@ -23,9 +23,12 @@ export const HelpProvider = (props) => {
         .then(response => response.json())
         .then(parsedResponse => {
             const newFire = parsedResponse.map(x => {
-                x['name']= x.station_number
-            });
+                const newObj = {...x}
+                newObj.name = x.station_number
+            return newObj
+        });
             setFire(newFire)
+            return newFire
         })  
     }
 
@@ -33,11 +36,20 @@ export const HelpProvider = (props) => {
         return fetch(`https://data.nashville.gov/resource/vn5u-d69i.json?$$app_token=${keys.AppToken}`)
         .then(response => response.json())
         .then(parsedResponse => {
-            const newLibrary = parsedResponse.map(x => {
-                x['name']= x.library_name
-                x['address']= x.location
-            });
+            const newLibrary = parsedResponse.map((x, index) => {
+                const newObj = {...x}
+                if (index === 0) {
+                    newObj.name= "none"
+                } else {
+                    newObj.name= x.library_name
+
+                }
+                newObj.street_address= x.location.human_address
+                
+            return newObj
+        });
             setLibrary(newLibrary)
+            return newLibrary
         })
     }
 
@@ -46,9 +58,12 @@ export const HelpProvider = (props) => {
         .then(response => response.json())
         .then(parsedResponse => {
             const newPolice = parsedResponse.map(x => {
-                x['name']= x.precinct_name
-            });
+                const newObj = {...x}
+                newObj.name = x.precinct_name
+            return newObj
+        });
             setPolice(newPolice)
+            return newPolice
         })
     }
 
@@ -57,21 +72,23 @@ export const HelpProvider = (props) => {
         .then(response => response.json())
         .then(parsedResponse => {
             const newWifi = parsedResponse.map(x => {
-                x['name']= x.site_name
-            });
+                const newObj = {...x}
+                newObj.name= x.site_name
+            return newObj
+        });
             setWifi(newWifi)
+            return newWifi
         })
     }
 
-    useEffect(() => {
-        getFire()
-        getPolice()
-        getWifi()
-        getLibrary()
+    // useEffect(() => {
+    //     getFire()
+    //     getPolice()
+    //     getWifi()
+    //     getLibrary()
 
-    }, [])
+    // }, [])
     
-
 
     /*
         You return a context provider which has the
@@ -81,7 +98,7 @@ export const HelpProvider = (props) => {
     */
     return (
         <HelpContext.Provider value={{
-            fire, library, police, wifi
+            getFire, fire, getLibrary, library, getPolice, police, getWifi, wifi
         }}>
             {props.children}
         </HelpContext.Provider>
