@@ -4,9 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
 import Toolbar from '@material-ui/core/Toolbar';
 import TuneIcon from '@material-ui/icons/Tune';
 import Typography from '@material-ui/core/Typography';
@@ -15,7 +13,10 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import getCategories from './NestedDrawerCategories';
 import NestedMenu01 from './NestedMenu01';
 import { useHistory } from "react-router-dom"
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 
+import SearchIcon from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -29,7 +30,6 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        // position: 'fixed',
         bottom: theme.spacing(2),
         right: theme.spacing(2),
     },
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
         paddingTop: 6,
-        paddingLeft: 5,
+        paddingLeft: 45,
     },
     
     logo: {
@@ -115,9 +115,11 @@ export const ResponsiveClippedDrawer = (props) => {
                         <TuneIcon />
                     </IconButton>
 
+                    <Link component={RouterLink} to="/">
                     <Typography variant="h6" className={classes.title} >
                     <img src="/images/TNConnect-FULL-Logo.svg" className={classes.logo} alt='Logo with hour outlines of people in circle forming a plus sign'/>
                     </Typography>
+                    </Link>
 
                     {/* -----------SEARCH MODAL---------- */}
                     {/* <div>

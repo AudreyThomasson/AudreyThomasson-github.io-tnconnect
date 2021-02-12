@@ -8,13 +8,13 @@ import { CommResContext } from "./CommResProvider";
 
 
 const useStyles = makeStyles((theme) => ({
-    position: "relative",
-    width: "100%",
+    
     title: {
         color: '#1976D2',
-        textAlign: "center",
-        paddingTop: "20px",
-        justifyContent: 'center'
+        paddingTop: "2rem",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     
     },
 }));
@@ -158,8 +158,8 @@ export const CardList = () => {
     return (
         <>
             
-            <Grid style={{justifyContent: 'center'}}>           
-                <h1 className='classes.title' >Community Resources</h1>
+            <Grid >           
+                <h1 style={{color: '#8bc34e', paddingTop: "1.5rem", marginBottom: "-.8rem", display: 'flex', justifyContent: 'center'}}>Community Resources</h1>
                 <br/>
                 
                 <>
